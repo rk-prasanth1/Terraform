@@ -11,7 +11,6 @@ terraform {
 provider "aws" {
     region = "ap-south-1"
     profile = "default"
-
 }
 
 #profile with alias
@@ -21,22 +20,22 @@ provider "aws" {
     alias = "ap-south-1"
 }
 
-resource "aws_instance" "test" {
-    provider = "aws"
+resource "aws_instance" "main" {
     ami = "ami-007020fd9c84e18c7"
     instance_type = "t2.micro"
 
-    tags {
-        Name = "Terraform main"
+    tags = {
+        Name = "terraform main"
     }
+  
 }
 
 resource "aws_instance" "db" {
-    provider = "aws.ap-south-1"
     ami = "ami-007020fd9c84e18c7"
     instance_type = "t2.micro"
+    provider = aws.ap-south-1
 
-    tags {
-        Name = "data base"
+    tags = {
+      Name = "data base"
     }
 }

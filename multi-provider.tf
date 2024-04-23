@@ -31,7 +31,7 @@ resource "aws_instance" "test" {
     }
 }
 
-resource {
+resource "aws_instance" "db" {
     provider = "aws.ap-south-1"
     ami = "ami-007020fd9c84e18c7"
     instance_type = "t2.micro"
